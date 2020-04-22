@@ -1,0 +1,24 @@
+/* *****************************************************************************
+// Non-localizable resource description for the JHP_DevTools Add-On
+// API Development Kit 22; Mac/Win
+//
+// Namespaces:			Contact person:
+//		-None-
+//
+// [SG compatible] - Yes
+// ****************************************************************************/
+
+#include "MDIDs_APICD.h"
+'MDID' 32500 "Add-On Identifier" {
+
+	//9-digit Author Developer ID:
+	625305189
+
+	//Generate this using 'Support\Tools\Win\AddOn Management\AddOnAdmin.exe'
+	//10-digit Addon Local ID:
+	1942961557
+}
+
+
+
+

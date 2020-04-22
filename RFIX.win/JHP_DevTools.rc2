@@ -1,0 +1,17 @@
+/* *****************************************************************************
+// Resource description for the Project_Name Add-On
+// API Development Kit 22; Windows resources
+//
+// Namespaces:			Contact person:
+//		-None-
+//
+// [SG compatible] - Yes
+// ****************************************************************************/
+
+#include "JHP_DevTools.grc.rc2"
+#include "JHP_DevToolsFix.grc.rc2"
+
+
+1		ICON    LOADONCALL MOVEABLE IMPURE  ACAP.ico
+
+

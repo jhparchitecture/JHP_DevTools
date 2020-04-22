@@ -1,0 +1,40 @@
+/* *****************************************************************************
+// Localizable resource description for the JHP_DevTools Add-On
+// API Development Kit 22; Mac/Win
+//
+// Namespaces:			Contact person:
+//		-None-
+//
+// [SG compatible] - Yes
+// ****************************************************************************/
+
+#include "JHP_DevToolsResIDs.hpp"
+
+'STR#' JHP_DEVTOOLS_ABOUT_STRINGSID "Add-on Name and Description" {
+/* [  1] */		"JHP_DevTools"
+/* [  2] */		"Tools for developers to push SOURCE code to USER tools."
+}
+
+
+/* Text appearing in the menu
+	-- same as the name of the folder without underscore(s) */
+
+'STR#' JHP_DEVTOOLS_MENU_STRINGSID "Strings for the Menu" {
+/* [   ] */		"JHP"
+/* [   ] */			"Dev Tools"
+/* [  1] */				"Push SOURCE code to user TOOLS"
+}
+
+
+/* Localizable dialog resource(s) with the accompanying help resource(s) */
+
+'GDLG' 32500  Modal			 40	   0  504  400		"Example Window" {
+/* [  1] */ Button			412  372   70   20		LargePlain	"OK"
+/* [  2] */ Button			332  372   70   20		LargePlain	"Cancel"
+}
+
+'DLGH'  32500  DLG_32500_JHP_DEVTOOLS {
+1	""							Button_0
+2	""							Button_1
+}
+
