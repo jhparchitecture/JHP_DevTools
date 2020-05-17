@@ -13,6 +13,8 @@
 //VERSIONING INFORMATION
 //USE THIS TO TRIGGER RE-IMPORTS/UPDATES
 
+#ifndef	_JHP_UTILITIES_H_
+#define	_JHP_UTILITIES_H_
 
 
 //General
@@ -43,8 +45,7 @@
 #include "SetPlatformProtocol.hpp"
 #include "DG.h"
 
-#ifndef	_JHP_UTILITIES_H_
-#define	_JHP_UTILITIES_H_
+
 #define NOMINMAX
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

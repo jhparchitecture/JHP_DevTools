@@ -456,13 +456,13 @@ GSErrCode JHP_SelectSimilar(void)
 
 	if (err != NoError)
 	{
-		WriteReport_Alert("Error!");
+		ACAPI_WriteReport("Error!", true);
 		return err;
 	}
 
 	if (theNeig.neigID == APINeig_None) //This is how you catch if the selection you asked for comes back with nothing
 	{
-		WriteReport_Alert("Neig is none");
+		ACAPI_WriteReport("Neig is none", true);
 		return err;
 	}
 
@@ -503,7 +503,7 @@ API_ElemTypeID JHP_GetSelectionType(bool newSelectionIfInvalid)
 		return id;
 
 	if (theNeig.neigID == APINeig_None)
-		WriteReport_Alert("This would be dialog box asking user to choose a type.");
+		ACAPI_WriteReport("This would be dialog box asking user to choose a type.", true);
 
 	API_Element element;
 	BNZeroMemory(&element, sizeof(API_Element));

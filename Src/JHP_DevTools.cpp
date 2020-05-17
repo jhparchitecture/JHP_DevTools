@@ -36,6 +36,13 @@ GS::UniString JHP_UserName()
 	return GS::UniString(strUserName).ToUpperCase();
 }
 
+// Usage:  printf("Filename = %s\n", ExtractFileName("c:\\some\\dir\\hello.exe").c_str());
+std::string ExtractFileName(const std::string& fullPath)
+{
+	const size_t lastSlashIndex = fullPath.find_last_of("/\\");
+	return fullPath.substr(lastSlashIndex + 1);
+}
+
 // ~~~~~~~~~~~~~~~
 // Copy SOURCE .apx to USER .apx and create archive
 // ~~~~~~~~~~~~~~~
