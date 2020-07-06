@@ -131,12 +131,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="C:\Program Files\GRAPHISOFT\API Development Kit 22.3004\Support\Inc\utf8header.h" />
-    <ClInclude Include="Src\*.h" />
+    <ClInclude Include="Src\APICommon.h" />
+    <ClInclude Include="Src\APIEnvir.h" />
     <ClInclude Include="Src\*.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Src\*.cpp" />
-   
+    <ClCompile Include="Src\JHP_DevTools.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="RINT\$(ProjectName).grc">
@@ -222,4 +222,3 @@
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
 </Project>
-

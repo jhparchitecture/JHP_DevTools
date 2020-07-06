@@ -75,7 +75,7 @@ void JHP_Publish()
 		std::string fname = (ExtractFileName(szFileName));
 
 
-		char dpath[MAX_PATH] = "O:\\CAD\\ArchiCAD\\Tools\\API\\";
+		char dpath[MAX_PATH] = "O:\\CAD\\ArchiCAD\\bin_23\\";
 		strcat(dpath, fname.c_str());
 
 		DWORD attr = GetFileAttributes(dpath);
@@ -99,11 +99,11 @@ void JHP_Publish()
 				return;
 			}
 		}
-		char apath[MAX_PATH] = "O:\\CAD\\ArchiCAD\\Tools\\API\\Archive\\";
+		char apath[MAX_PATH] = "O:\\CAD\\ArchiCAD\\bin_23\\Archive\\";
 		strcat(apath, fname.c_str());
 
 		int i = 0;
-		char cpath[MAX_PATH] = "O:\\CAD\\ArchiCAD\\Tools\\API\\Archive\\";
+		char cpath[MAX_PATH] = "O:\\CAD\\ArchiCAD\\bin_23\\Archive\\";
 		strcat(cpath, fname.c_str());
 		char *str = new char[3];
 		itoa(i, str, 10);
@@ -118,7 +118,7 @@ void JHP_Publish()
 			else
 			{
 				//				ifexist = TRUE;  // does exist
-				char cpath[MAX_PATH] = "O:\\CAD\\ArchiCAD\\Tools\\API\\Archive\\";
+				char cpath[MAX_PATH] = "O:\\CAD\\ArchiCAD\\bin_23\\Archive\\";
 				strcat(cpath, fname.c_str());
 				char *str = new char[3];
 				itoa(i, str, 10);
