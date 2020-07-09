@@ -1,6 +1,6 @@
 ﻿// *****************************************************************************
 // Helper functions for Add-On development
-// API Development Kit 23; Mac/Win
+// API Development Kit 22; Mac/Win
 //
 // Namespaces:		Contact person:
 //		-None-
@@ -75,11 +75,13 @@ bool		ClickAnElem (const char			*prompt,
 						 bool				ignorePartialSelection = true);
 
 
-GS::Array<API_Neig>	ClickElements_Neig (const char		*prompt,
-										API_ElemTypeID	needTypeID);
+API_Neig**	ClickElements_Neig (const char		*prompt,
+								API_ElemTypeID	needTypeID,
+								Int32			*nItem);
 
-GS::Array<API_Guid>	ClickElements_Guid (const char		*prompt,
-										API_ElemTypeID	needTypeID);
+API_Elem_Head**	ClickElements_ElemHead (const char		*prompt,
+										API_ElemTypeID	needTypeID,
+										Int32			*nItem);
 
 bool		GetMenuItemMark (short menuResID, short itemIndex);
 bool		InvertMenuItemMark (short menuResID, short itemIndex);

@@ -18,6 +18,8 @@
 #include	<Commdlg.h>
 #include	<iostream>
 #include	<string>
+#include	<sstream>
+#include	<strsafe.h>
 
 // =============================================================================
 //
@@ -43,12 +45,45 @@ std::string ExtractFileName(const std::string& fullPath)
 	return fullPath.substr(lastSlashIndex + 1);
 }
 
+void ErrorExit(LPTSTR lpszFunction)
+{
+	// Retrieve the system error message for the last-error code
+
+	LPVOID lpMsgBuf;
+	LPVOID lpDisplayBuf;
+	DWORD dw = GetLastError();
+
+	FormatMessage(
+		FORMAT_MESSAGE_ALLOCATE_BUFFER |
+		FORMAT_MESSAGE_FROM_SYSTEM |
+		FORMAT_MESSAGE_IGNORE_INSERTS,
+		NULL,
+		dw,
+		MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+		(LPTSTR)&lpMsgBuf,
+		0, NULL);
+
+	// Display the error message and exit the process
+
+	lpDisplayBuf = (LPVOID)LocalAlloc(LMEM_ZEROINIT,
+		(lstrlen((LPCTSTR)lpMsgBuf) + lstrlen((LPCTSTR)lpszFunction) + 40) * sizeof(TCHAR));
+	StringCchPrintf((LPTSTR)lpDisplayBuf,
+		LocalSize(lpDisplayBuf) / sizeof(TCHAR),
+		TEXT("%s failed with error %d: %s"),
+		lpszFunction, dw, lpMsgBuf);
+	MessageBox(NULL, (LPCTSTR)lpDisplayBuf, TEXT("Error"), MB_OK);
+
+	LocalFree(lpMsgBuf);
+	LocalFree(lpDisplayBuf);
+	ExitProcess(dw);
+}
+
 // ~~~~~~~~~~~~~~~
 // Copy SOURCE .apx to USER .apx and create archive
 // ~~~~~~~~~~~~~~~
 
 char* strAddOn_Source = "D:\\ArchicadDevelopment\\JHP_DevTools\\Build\x64\\Release";
-char* strAddOn_Destination = "O:\\CAD\\ArchiCAD\\bin_23";
+char* strAddOn_Destination = "O:\\CAD\\ArchiCAD\\bin_22";
 
 // Usage:  printf("Filename = %s\n", ExtractFileName("c:\\some\\dir\\hello.exe").c_str());
 void JHP_Publish()
@@ -74,9 +109,11 @@ void JHP_Publish()
 	{
 		std::string fname = (ExtractFileName(szFileName));
 
-
-		char dpath[MAX_PATH] = "O:\\CAD\\ArchiCAD\\bin_23\\";
+		char dpath[MAX_PATH] = "O:\\CAD\\ArchiCAD\\bin_22\\";
 		strcat(dpath, fname.c_str());
+		GS::UniString message = "Destination file: ";
+		message += dpath;
+		ACAPI_WriteReport(message, true);
 
 		DWORD attr = GetFileAttributes(dpath);
 		if (attr == INVALID_FILE_ATTRIBUTES || (attr & FILE_ATTRIBUTE_DIRECTORY))
@@ -91,19 +128,22 @@ void JHP_Publish()
 			const int result = MessageBox(NULL, "Destination file already exists.\n\nDo you want to overwrite?", "Confirm Overwrite", MB_YESNO | MB_DEFBUTTON2 | MB_ICONWARNING);
 			switch (result)
 			{
-				//			case IDYES:
-				//				break;
+			// case IDYES:
+				//	break;
 			case IDNO:
 				return;
 			case IDCANCEL:
 				return;
 			}
 		}
-		char apath[MAX_PATH] = "O:\\CAD\\ArchiCAD\\bin_23\\Archive\\";
-		strcat(apath, fname.c_str());
 
+		char apath[MAX_PATH] = "O:\\CAD\\ArchiCAD\\bin_22\\Archive\\";
+		// std::string npath = "O:\\CAD\\ArchiCAD\\bin_22\\Archive\\";
+		// if (CreateDirectory(npath.c_str(), NULL) || ERROR_ALREADY_EXISTS == GetLastError())
+		// (CreateDirectory(npath.c_str(), NULL) || ERROR_ALREADY_EXISTS == GetLastError());
+		strcat(apath, fname.c_str());
 		int i = 0;
-		char cpath[MAX_PATH] = "O:\\CAD\\ArchiCAD\\bin_23\\Archive\\";
+		char cpath[MAX_PATH] = "O:\\CAD\\ArchiCAD\\bin_22\\Archive\\";
 		strcat(cpath, fname.c_str());
 		char *str = new char[3];
 		itoa(i, str, 10);
@@ -118,7 +158,7 @@ void JHP_Publish()
 			else
 			{
 				//				ifexist = TRUE;  // does exist
-				char cpath[MAX_PATH] = "O:\\CAD\\ArchiCAD\\bin_23\\Archive\\";
+				char cpath[MAX_PATH] = "O:\\CAD\\ArchiCAD\\bin_22\\Archive\\";
 				strcat(cpath, fname.c_str());
 				char *str = new char[3];
 				itoa(i, str, 10);
@@ -130,7 +170,6 @@ void JHP_Publish()
 				strcat(cpath, str);
 				attr = GetFileAttributes(cpath);
 				i++;
-
 			}
 
 		if (i != 0)
@@ -143,7 +182,7 @@ void JHP_Publish()
 
 		strcat(apath, str);
 
-		CopyFile(dpath, apath, FALSE);
+		CopyFile(dpath, apath, FALSE);  // make a copy of the archive file after adding "___" and a two digit number to extension
 
 		ifexist = FALSE;
 		attr = GetFileAttributes(apath);
@@ -156,7 +195,17 @@ void JHP_Publish()
 			else
 				ifexist = TRUE;  // does exist
 
-		CopyFile(szFileName, dpath, FALSE);
+		// CopyFile(szFileName, dpath, FALSE);  // make a copy of the recent build to the ..\bin_22 folder, overwriting existing version
+
+		BOOL b = CopyFile(szFileName, dpath, FALSE);
+
+		if (!b) {
+			ErrorExit(TEXT("Awww crap...  "));
+		}
+		else {
+			GS::UniString message1 = "OK";
+			ACAPI_WriteReport(message1, true);
+		}
 	}
 	return;
 }
