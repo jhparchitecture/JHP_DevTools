@@ -191,7 +191,16 @@ void JHP_Publish()
 			else
 				ifexist = TRUE;  // does exist
 
-		CopyFile(szFileName, dpath, FALSE);
+//		CopyFile(szFileName, dpath, FALSE);
+		BOOL b = CopyFile(szFileName, dpath, FALSE);
+
+		if (!b) {
+			ErrorExit(TEXT("Awww crap...  "));
+		}
+		else {
+			GS::UniString message1 = "OK";
+			ACAPI_WriteReport(message1, true);
+		}
 	}
 	return;
 }
