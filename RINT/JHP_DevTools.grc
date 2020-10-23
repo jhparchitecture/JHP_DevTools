@@ -20,8 +20,8 @@
 	-- same as the name of the folder without underscore(s) */
 
 'STR#' JHP_DEVTOOLS_MENU_STRINGSID "Strings for the Menu" {
-/* [   ] */		"JHP"
-/* [   ] */			"Dev Tools"
+/* [   ] */		"JHP Dev"
+/* [   ] */			"Tools"
 /* [  1] */				"Push SOURCE code to user TOOLS"
 }
 

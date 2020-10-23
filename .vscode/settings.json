@@ -1,0 +1,70 @@
+{
+    // This prevents Omnisharp from prematurely creating obj and bin directories.
+    // Change this to true after changing the name of the csproj file and running Restore Project.
+    "omnisharp.autoStart": true,
+
+    // This just circumvents annoying default behavior with the C# extension...
+    // If you really like Code Lens, feel free to change this.
+    "csharp.referencesCodeLens.enabled": false,
+	
+    "files.exclude": {
+        "**/.[^v]*": true, // hide any files that start with a '.' but keep the .vscode folder
+        ".vs": true, // Visual Studio settings
+        "**/Build": true,
+        "**/RFIX.WIN": true,
+        ".gitignore": true,
+        ".gitmodules": true,
+        "README.md": true,
+        "**.vcxproj.user": true,
+        "LICENSE" : true
+    },
+    "files.associations": {
+        "algorithm": "cpp",
+        "functional": "cpp",
+        "new": "cpp",
+        "type_traits": "cpp",
+        "typeinfo": "cpp",
+        "vector": "cpp",
+        "xhash": "cpp",
+        "xutility": "cpp",
+        "xlocale": "cpp",
+        "xstring": "cpp",
+        "cmath": "cpp",
+        "cstdlib": "cpp",
+        "xlocnum": "cpp",
+        "cinttypes": "cpp",
+        "concepts": "cpp",
+        "cstdarg": "cpp",
+        "cstddef": "cpp",
+        "cstdint": "cpp",
+        "cstdio": "cpp",
+        "cstring": "cpp",
+        "cwchar": "cpp",
+        "exception": "cpp",
+        "initializer_list": "cpp",
+        "ios": "cpp",
+        "iosfwd": "cpp",
+        "iostream": "cpp",
+        "istream": "cpp",
+        "limits": "cpp",
+        "list": "cpp",
+        "memory": "cpp",
+        "ostream": "cpp",
+        "stdexcept": "cpp",
+        "streambuf": "cpp",
+        "system_error": "cpp",
+        "tuple": "cpp",
+        "unordered_map": "cpp",
+        "utility": "cpp",
+        "xfacet": "cpp",
+        "xiosbase": "cpp",
+        "xlocinfo": "cpp",
+        "xmemory": "cpp",
+        "xstddef": "cpp",
+        "xtr1common": "cpp",
+        "*.rh": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Enabled"
+}
+
+

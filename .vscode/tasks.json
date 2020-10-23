@@ -1,0 +1,70 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+
+        {
+            "label": "Build (Debug)",
+            "type": "shell",
+            "command": "msbuild",
+            "args": [
+                "JHP_DevTools.vcxproj",
+                "/p:configuration=Debug",
+                "/p:platform=x64",
+            ],
+            "group": "build",
+            "problemMatcher": "$msCompile",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            }
+        },
+
+        {
+            "label": "Build (Release)",
+            "type": "shell",
+            "command": "msbuild",
+            "args": [
+                "JHP_DevTools.vcxproj",
+                "/p:configuration=Release",
+                "/p:platform=x64",
+            ],
+            "group": "build",
+            "problemMatcher": "$msCompile",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            }
+        },
+
+        {
+            "label": "Build and Copy To Local Addons (Release)",
+            "type": "shell",
+            "command": "powershell -Command \"Start-Process PowerShell -Verb RunAs\"",
+            "args": [
+                "${workspaceFolder}/.vscode/copyToAddons.ps1",
+            ],
+            "group": "build",
+            "problemMatcher": "$msCompile",
+            "dependsOn": "Build (Release)",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            }
+        },
+    ]
+}
+
+
+
